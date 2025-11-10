@@ -10,6 +10,7 @@ export const useRacingGame = () => {
   const [carNames, setCarNames] = useState([]);
   const [roundCount, setRoundCount] = useState(0);
   const [raceHistory, setRaceHistory] = useState([]); // 각 라운드별 자동차 위치
+  const [randomNumbers, setRandomNumbers] = useState([]); // 각 라운드별 랜덤 숫자
   const [winners, setWinners] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,7 @@ export const useRacingGame = () => {
       
       // 결과 처리
       setRaceHistory(result.raceHistory || []);
+      setRandomNumbers(result.randomNumbers || []);
       setWinners(result.winners || []);
       
       // 경주 애니메이션 시작
@@ -53,6 +55,7 @@ export const useRacingGame = () => {
     setCarNames([]);
     setRoundCount(0);
     setRaceHistory([]);
+    setRandomNumbers([]);
     setWinners([]);
     setError(null);
     setLoading(false);
@@ -71,6 +74,7 @@ export const useRacingGame = () => {
     carNames,
     roundCount,
     raceHistory,
+    randomNumbers,
     winners,
     error,
     loading,

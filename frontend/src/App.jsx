@@ -11,6 +11,7 @@ function App() {
     gameState,
     carNames,
     raceHistory,
+    randomNumbers,
     winners,
     error,
     startGame,
@@ -31,6 +32,7 @@ function App() {
         <RacingScreen
           carNames={carNames}
           raceHistory={raceHistory}
+          randomNumbers={randomNumbers}
           onComplete={showResult}
         />
       )}

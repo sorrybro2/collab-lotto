@@ -10,6 +10,7 @@ const USE_MOCK = true; // 백엔드 없이 테스트할 때 true, 실제 API 사
  */
 const generateMockRaceData = (carNames, roundCount) => {
   const raceHistory = [];
+  const randomNumbers = []; // 각 라운드의 랜덤 숫자 저장
   const positions = {};
   
   // 초기 위치 설정
@@ -19,20 +20,26 @@ const generateMockRaceData = (carNames, roundCount) => {
   
   // 각 라운드 시뮬레이션
   for (let round = 0; round < roundCount; round++) {
+    const roundRandoms = {};
+    
     carNames.forEach(name => {
       const randomNum = Math.floor(Math.random() * 10);
+      roundRandoms[name] = randomNum; // 랜덤 숫자 저장
+      
       if (randomNum >= 4) {
         positions[name] += 1;
       }
     });
+    
     raceHistory.push({ ...positions });
+    randomNumbers.push(roundRandoms);
   }
   
   // 우승자 찾기
   const maxPosition = Math.max(...Object.values(positions));
   const winners = carNames.filter(name => positions[name] === maxPosition);
   
-  return { raceHistory, winners };
+  return { raceHistory, randomNumbers, winners };
 };
 
 /**
